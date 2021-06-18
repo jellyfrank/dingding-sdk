@@ -3,8 +3,7 @@
 # @Author  : Kevin Kong (kfx2007@163.com)
 
 from .core import Core
-from .contact import Department
-from .role import Role
+from .contact import Department, Role
 
 class DingTalk(object):
 

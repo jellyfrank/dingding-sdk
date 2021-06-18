@@ -4,7 +4,6 @@
 
 from . import core
 from . import contact
-from . import role
 
 __author__ = "Kevin Kong"
 __version__ = "0.0.1"

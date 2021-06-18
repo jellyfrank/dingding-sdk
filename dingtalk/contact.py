@@ -119,7 +119,7 @@ class Department(Core):
         res = self._post(url, data)
         return res['result']['dept_id_list']
 
-    def get_user_departments(self,userid):
+    def get_user_departments(self, userid):
         """
         get all departments of given user.
 
@@ -128,10 +128,10 @@ class Department(Core):
         """
         url = f"{URL}/topapi/v2/department/listparentbyuser"
         data = {'userid': userid}
-        res = self._post(url,data)
+        res = self._post(url, data)
         return res['result']['parent_list']
 
-    def get_parents(self,dept_id):
+    def get_parents(self, dept_id):
         """
         get parents of one department.
 
@@ -140,5 +140,32 @@ class Department(Core):
         """
         url = f"{URL}/topapi/v2/department/listparentbydept"
         data = {'dept_id': dept_id}
-        res = self._post(url,data)
+        res = self._post(url, data)
         return res['result']['parent_id_list']
+
+
+class Role(Core):
+
+    def create(self, name, groupid):
+        """
+        create role
+
+        :param name: role name
+        :param groupid: group id
+        """
+        url = f"{URL}/role/add_role"
+        data = {'roleName': name, 'groupId': groupid}
+        res = self._post(url, data)
+        return res['roleId']
+
+    def create_group(self, name):
+        """
+        create role group
+
+        :param name: group name
+        :return groupId: group id
+        """
+        url = f"{URL}/role/add_role_group"
+        data = {'name': name}
+        res = self._post(url, data)
+        return res['groupId']

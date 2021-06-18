@@ -3,7 +3,7 @@
 # @Author  : Kevin Kong (kfx2007@163.com)
 
 import unittest
-from unittest import TestCase,TestSuite
+from unittest import TestCase, TestSuite
 from dingtalk.dingtalk import DingTalk
 
 
@@ -15,14 +15,14 @@ class TestContact(TestCase):
     def setUpClass(cls):
         cls.appkey = "dingtjjs1pr7nlgmtoxc"
         cls.appsecret = "8a6Ltc8_w-BNpqVOXg3dUH_1PHxxgmWnuf6Gt1ZcQqaMR3fYDDD6rs3Jnmzxr9uy"
-        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret)        
+        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret)
 
     def test_create_department(self):
-        if  not TestContact.department_id:
+        if not TestContact.department_id:
             res = self.dingtalk.department.create("Test")
             self.assertIsInstance(res, int, res)
             TestContact.department_id = res
-        
+
     def test_get_departments(self):
         res = self.dingtalk.department.get()
         self.assertGreaterEqual(len(res), 0, res)
@@ -32,7 +32,7 @@ class TestContact(TestCase):
 
     def test_update_department(self):
         res = self.dingtalk.department.update(self.department_id, name="TEST")
-        self.assertTrue(res)    
+        self.assertTrue(res)
 
     def test_get_department_info(self):
         res = self.dingtalk.department.get_info(self.department_id)
@@ -54,6 +54,14 @@ class TestContact(TestCase):
         res = self.dingtalk.department.delete(self.department_id)
         self.assertTrue(res)
 
+    def test_create_role(self):
+        res = self.dingtalk.role.create("TestRole")
+        self.assertIsInstance(res, int)
+
+    def test_create_role_group(self):
+        res = self.dingtalk.role.create_group("TestRoleGroup")
+        self.assertIsInstance(res, int)
+
 
 if __name__ == "__main__":
     suit = TestSuite()
@@ -63,4 +71,5 @@ if __name__ == "__main__":
     suit.addTest(TestContact("test_get_department_children"))
     suit.addTest(TestContact("test_get_parents"))
     suit.addTest(TestContact("test_delete_department"))
+    suit.addTest(TestContact("test_create_role_group"))
     unittest.TextTestRunner(verbosity=3).run(suit)
