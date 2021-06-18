@@ -25,8 +25,7 @@ class Department(Core):
         })
         return res['result']
 
-    def create(self, name, parent_id=1, hide_dept=False, dept_permits=None, user_permits=None, outer_dept=None,
-               outer_dept_only_self=None, outer_permit_users=None, outer_permit_depts=None, create_dept_group=None, order=None, source_identifier=None):
+    def create(self, name, parent_id=1, **kwargs):
         """
         create a department.
 
@@ -46,7 +45,7 @@ class Department(Core):
         :return dept_id: deparment id of new created department.
         """
         url = f"{URL}/topapi/v2/department/create"
-        data = {'name': name}
+        data = {'name': name, 'parent_id': parent_id}
         data.update(kwargs)
         res = self._post(url, data=data)
         return res['result']['dept_id']
@@ -95,3 +94,51 @@ class Department(Core):
         data = {'dept_id': dept_id}
         self._post(url, data=data)
         return True
+
+    def get_info(self, dept_id, lang=None):
+        """
+        get detail infos of department.
+
+        :param dept_id: department id
+        :param lang: language of department.
+        """
+        url = f"{URL}/topapi/v2/department/get"
+        data = {'dept_id': dept_id, 'language': lang}
+        res = self._post(url, data=data)
+        return res['result']
+
+    def get_children(self, dept_id):
+        """
+        get childen of the department.
+
+         :param dept_id: department id
+         :return departments: id list of children deparments
+        """
+        url = f"{URL}/topapi/v2/department/listsubid"
+        data = {'dept_id': dept_id}
+        res = self._post(url, data)
+        return res['result']['dept_id_list']
+
+    def get_user_departments(self,userid):
+        """
+        get all departments of given user.
+
+        :param userid: user id 
+        :return parent_list: user's departments.
+        """
+        url = f"{URL}/topapi/v2/department/listparentbyuser"
+        data = {'userid': userid}
+        res = self._post(url,data)
+        return res['result']['parent_list']
+
+    def get_parents(self,dept_id):
+        """
+        get parents of one department.
+
+        :param dept_id: id of department
+        :param parent_id_list: id list of parent departments
+        """
+        url = f"{URL}/topapi/v2/department/listparentbydept"
+        data = {'dept_id': dept_id}
+        res = self._post(url,data)
+        return res['result']['parent_id_list']
