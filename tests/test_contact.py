@@ -10,6 +10,7 @@ from dingtalk.dingtalk import DingTalk
 class TestContact(TestCase):
 
     department_id = None
+    role_id = None
 
     @classmethod
     def setUpClass(cls):
@@ -57,10 +58,23 @@ class TestContact(TestCase):
     def test_create_role(self):
         res = self.dingtalk.role.create("TestRole")
         self.assertIsInstance(res, int)
+        TestContact.role_id = res
 
     def test_create_role_group(self):
         res = self.dingtalk.role.create_group("TestRoleGroup")
         self.assertIsInstance(res, int)
+
+    def test_update_role(self):
+        res = self.dingtalk.role.update_role(TestContact.role_id, "TESTRole")
+        self.assertTrue(res)
+
+    def test_add_roles_to_users(self):
+        res = self.dingtalk.role.add_roles_to_users()
+        self.assertTrue(res)
+
+    def test_delete_role(self):
+        res = self.dingtalk.role.delete(TestContact.role_id)
+        self.assertTrue(res)
 
 
 if __name__ == "__main__":

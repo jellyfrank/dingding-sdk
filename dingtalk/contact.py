@@ -169,3 +169,66 @@ class Role(Core):
         data = {'name': name}
         res = self._post(url, data)
         return res['groupId']
+
+    def update_role(self, roleid, rolename):
+        """
+        update role
+
+        :param roleid: role id
+        :param rolename: rolename
+        :return True
+        """
+        url = f"{URL}/role/update_role"
+        data = {'roleid': roleid, 'rolename': rolename}
+        res = self._post(url, data)
+        return True
+
+    def add_roles_to_users(self, roles, users):
+        """
+        add roles to users.
+
+        :param roles: roles
+        :param users: users
+        :return True
+        """
+        url = "f{URL}/role/addrolesforemps"
+        data = {'roleIds': roles, 'userIds': users}
+        res = self._post(url, data)
+        return True
+
+    def delete(self, role_id):
+        """
+        delete role
+
+        :param role_id: id of role which is going to be deleted.
+        :return True
+        """
+        url = f"{URL}/topapi/role/deleterole"
+        data = f"{'role_id':role_id}"
+        res = self._post(url, data)
+        return True
+
+    def delete_users_roles(self, roleids, userids):
+        """
+        delete users' roles
+
+        :param roleIds: roles
+        :param userids: users
+        """
+        url = f"{URL}/topapi/role/removerolesforemps"
+        data = f"{'roleIds':roleids,'userIds':userids}"
+        res = self._post(url, data)
+        return True
+
+    def get_by_groupid(self, group_id):
+        """
+        get role groups list.
+
+        :param group_id: id of group.
+        :return role_group: role group detail
+        """
+
+        url = f"{URL}/topapi/role/getrolegroup"
+        data = f"{'group_id':group_id}"
+        res = self._post(url, data)
+        return res['role_group']
