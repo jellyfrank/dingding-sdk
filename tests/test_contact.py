@@ -76,6 +76,14 @@ class TestContact(TestCase):
         res = self.dingtalk.role.delete(TestContact.role_id)
         self.assertTrue(res)
 
+    def test_get_role_list(self):
+        res = self.dingtalk.role.get()
+        self.assertIsInstance(res, dict)
+
+    def test_get_role_detail(self):
+        res = self.dingtalk.role.get_detail(TestContact.role_id)
+        self.assertIsInstance(res, dict)
+
 
 if __name__ == "__main__":
     suit = TestSuite()

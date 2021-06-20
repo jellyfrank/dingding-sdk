@@ -204,7 +204,7 @@ class Role(Core):
         :return True
         """
         url = f"{URL}/topapi/role/deleterole"
-        data = f"{'role_id':role_id}"
+        data = {'role_id': role_id}
         res = self._post(url, data)
         return True
 
@@ -216,7 +216,7 @@ class Role(Core):
         :param userids: users
         """
         url = f"{URL}/topapi/role/removerolesforemps"
-        data = f"{'roleIds':roleids,'userIds':userids}"
+        data = {'roleIds': roleids, 'userIds': userids}
         res = self._post(url, data)
         return True
 
@@ -229,6 +229,45 @@ class Role(Core):
         """
 
         url = f"{URL}/topapi/role/getrolegroup"
-        data = f"{'group_id':group_id}"
+        data = {'group_id': group_id}
         res = self._post(url, data)
         return res['role_group']
+
+    def get(self, size=20, offset=0):
+        """
+        get role list
+
+        :param size: support paging query, it will take effect only when it is set at the same time with the offset parameter. This parameter represents the page size, the default value is 20, the maximum value is 200
+        :param offset: offset
+        :return roles list.
+        """
+        url = f"{URL}/topapi/role/list"
+        data = {'size': size, 'offset': offset}
+        res = self._post(url, data)
+        return res['result']
+
+    def get_detail(self, roleid):
+        """
+        get role detail
+
+        :param roleid
+        :return role
+        """
+
+        url = f"{URL}/topapi/role/getrole"
+        data = {'roleId': roleid}
+        res = self._post(url, data)
+        return res['role']
+
+    def get_users(self, roleid, size=20, offset=0):
+        """
+        get users by role.
+
+        :param roleid: role id.
+        :return result
+        """
+
+        url = f"{URL}/topapi/role/simplelist"
+        data = {'role_id': roleid, 'size': size, 'offset': offset}
+        res = self._post(url, data)
+        return res['result']
