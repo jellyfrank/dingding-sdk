@@ -4,10 +4,11 @@
 
 from .core import Core
 from .contact import Department, Role
+from .message import Message
 
 class DingTalk(object):
 
-    def __init__(self, corpid, appkey, appsecret,suitticket=None):
+    def __init__(self, corpid, appkey, appsecret,agentid,suitticket=None):
         """
         init dingtalk client
 
@@ -21,10 +22,12 @@ class DingTalk(object):
         self._appkey = appkey
         self._appsecret = appsecret
         self._suitticket = suitticket
+        self._agentid  = agentid
 
     core = Core()
     department  = Department()
     role = Role()
+    message = Message()
 
     # def _get_enterprise_access_token(self):
     #     """

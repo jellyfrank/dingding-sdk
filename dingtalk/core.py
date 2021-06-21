@@ -19,6 +19,7 @@ class Core(object):
         self._appkey = instance._appkey
         self._appsecret = instance._appsecret
         self._suitticket = instance._suitticket
+        self._agentid = instance._agentid
         return self
 
     def _get_enterprise_access_token(self):
