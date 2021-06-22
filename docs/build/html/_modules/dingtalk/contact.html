@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>dingtalk.contact &mdash; dingding-sdk 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> dingding-sdk
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">安装与升级</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">快速开始</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../dept.html">部门管理</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">dingding-sdk</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>dingtalk.contact</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for dingtalk.contact</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python3</span>
+<span class="c1"># @Time    : 2021-06-18</span>
+<span class="c1"># @Author  : Kevin Kong (kfx2007@163.com)</span>
+
+<span class="kn">from</span> <span class="nn">.core</span> <span class="k">import</span> <span class="n">Core</span><span class="p">,</span> <span class="n">URL</span>
+
+
+<div class="viewcode-block" id="Department"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department">[docs]</a><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Department.get"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get department list</span>
+<span class="sd">       </span>
+<span class="sd">        :param dept_id: int id of department, get all departments if dept_id is None</span>
+<span class="sd">        :param lang: language of contacts</span>
+
+<span class="sd">        :return result: list of departments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># [{&#39;auto_add_user&#39;: True, &#39;create_dept_group&#39;: True, &#39;dept_id&#39;: 147953855, &#39;name&#39;: &#39;财务部&#39;, &#39;parent_id&#39;: 1}]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/listsub&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;dept_id&quot;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">,</span>
+            <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="n">lang</span>
+        <span class="p">})</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Department.create"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">parent_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create a department.</span>
+
+<span class="sd">        :param name:  department name</span>
+<span class="sd">        :param parent_id: parent department id, default 1 root department.</span>
+<span class="sd">        :param hide_dept: whether hide the department</span>
+<span class="sd">        :param dept_permits: who can view the department, limit 200 departments.</span>
+<span class="sd">        :param user_permits: who can view the department, limit 200 persons.</span>
+<span class="sd">        :param outer_dept: restrict members of this department from viewing the address book.</span>
+<span class="sd">        :param outer_dept_only_self: whether members of this department can only see the address book of their department and subordinate departments</span>
+<span class="sd">        :param outer_permit_users: specify the userid list of address book users that the members of this department can view, the total cannot exceed 200</span>
+<span class="sd">        :param outer_permit_depts: specify a list of department IDs in the address book that members of this department can view, the total number cannot exceed 200</span>
+<span class="sd">        :param create_dept_group: whether to create an enterprise group associated with this department</span>
+<span class="sd">        :param order: for the sort value in the parent department, the lower order value is sorted first</span>
+<span class="sd">        :param source_identifier: department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing</span>
+
+<span class="sd">        :return dept_id: deparment id of new created department.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/create&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;parent_id&#39;</span><span class="p">:</span> <span class="n">parent_id</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;dept_id&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Department.update"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        udpate department.</span>
+
+<span class="sd">        :param dept_id: the department id which to update.</span>
+<span class="sd">        :param name:  department name</span>
+<span class="sd">        :param language:  language of department.</span>
+<span class="sd">        :param parent_id: parent department id, default 1 root department.</span>
+<span class="sd">        :param hide_dept: whether hide the department</span>
+<span class="sd">        :param dept_permits: who can view the department, limit 200 departments.</span>
+<span class="sd">        :param user_permits: who can view the department, limit 200 persons.</span>
+<span class="sd">        :param outer_dept: restrict members of this department from viewing the address book.</span>
+<span class="sd">        :param outer_dept_only_self: whether members of this department can only see the address book of their department and subordinate departments</span>
+<span class="sd">        :param outer_permit_users: specify the userid list of address book users that the members of this department can view, the total cannot exceed 200</span>
+<span class="sd">        :param outer_permit_depts: specify a list of department IDs in the address book that members of this department can view, the total number cannot exceed 200</span>
+<span class="sd">        :param create_dept_group: whether to create an enterprise group associated with this department</span>
+<span class="sd">        :param order: for the sort value in the parent department, the lower order value is sorted first</span>
+<span class="sd">        :param source_identifier: department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing</span>
+<span class="sd">        :param auto_add_user: whether auto add user into group when user been added to department.</span>
+<span class="sd">        :param dept_manager_userid_list: update manager list of department</span>
+<span class="sd">        :param group_contain_sub_dept: whether has child department.</span>
+<span class="sd">        :param group_contain_outer_dept: whether has outside department</span>
+<span class="sd">        :param group_contain_hidden_dept: whether has hide department.</span>
+<span class="sd">        :param org_dept_owner: the host of group.</span>
+
+<span class="sd">        :return result: True or False</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/update&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Department.delete"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        delete department</span>
+
+<span class="sd">        :param dept_id: department id which is going to be deleted.</span>
+<span class="sd">        </span>
+<span class="sd">        :return True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/delete&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Department.get_info"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.get_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get detail infos of department.</span>
+
+<span class="sd">        :param dept_id: department id</span>
+<span class="sd">        :param lang: language of department.</span>
+
+<span class="sd">        :return result: department infos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/get&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">lang</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Department.get_children"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.get_children">[docs]</a>    <span class="k">def</span> <span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get childen of the department.</span>
+
+<span class="sd">         :param dept_id: department id</span>
+<span class="sd">         :return departments: id list of children deparments</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/listsubid&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;dept_id_list&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Department.get_user_departments"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.get_user_departments">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_departments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get all departments of given user.</span>
+
+<span class="sd">        :param userid: user id.</span>
+
+<span class="sd">        :return parent_list: user&#39;s departments.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/listparentbyuser&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="n">userid</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;parent_list&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Department.get_parents"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Department.get_parents">[docs]</a>    <span class="k">def</span> <span class="nf">get_parents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get parents of one department.</span>
+
+<span class="sd">        :param dept_id: id of department</span>
+<span class="sd">        :param parent_id_list: id list of parent departments</span>
+
+<span class="sd">        :return parent_ids: list of parent ids.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/listparentbydept&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;parent_id_list&#39;</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="Role"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role">[docs]</a><span class="k">class</span> <span class="nc">Role</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Role.create"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">groupid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create role</span>
+
+<span class="sd">        :param name: role name</span>
+<span class="sd">        :param groupid: group id</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/role/add_role&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleName&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;groupId&#39;</span><span class="p">:</span> <span class="n">groupid</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;roleId&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.create_group"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.create_group">[docs]</a>    <span class="k">def</span> <span class="nf">create_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create role group</span>
+
+<span class="sd">        :param name: group name</span>
+<span class="sd">        :return groupId: group id</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/role/add_role_group&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;groupId&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.update"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roleid</span><span class="p">,</span> <span class="n">rolename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        update role</span>
+
+<span class="sd">        :param roleid: role id</span>
+<span class="sd">        :param rolename: rolename</span>
+
+<span class="sd">        :return result: True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/role/update_role&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleId&#39;</span><span class="p">:</span> <span class="n">roleid</span><span class="p">,</span> <span class="s1">&#39;roleName&#39;</span><span class="p">:</span> <span class="n">rolename</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Role.add_roles_to_users"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.add_roles_to_users">[docs]</a>    <span class="k">def</span> <span class="nf">add_roles_to_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roles</span><span class="p">,</span> <span class="n">users</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        add roles to users.</span>
+
+<span class="sd">        :param roles: roles</span>
+<span class="sd">        :param users: users</span>
+<span class="sd">        :return True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;f</span><span class="si">{URL}</span><span class="s2">/role/addrolesforemps&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleIds&#39;</span><span class="p">:</span> <span class="n">roles</span><span class="p">,</span> <span class="s1">&#39;userIds&#39;</span><span class="p">:</span> <span class="n">users</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Role.delete"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">role_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        delete role</span>
+
+<span class="sd">        :param role_id: id of role which is going to be deleted.</span>
+<span class="sd">        :return True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/deleterole&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;role_id&#39;</span><span class="p">:</span> <span class="n">role_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Role.delete_users_roles"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.delete_users_roles">[docs]</a>    <span class="k">def</span> <span class="nf">delete_users_roles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roleids</span><span class="p">,</span> <span class="n">userids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        delete users&#39; roles</span>
+
+<span class="sd">        :param roleIds: roles</span>
+<span class="sd">        :param userids: users</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/removerolesforemps&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleIds&#39;</span><span class="p">:</span> <span class="n">roleids</span><span class="p">,</span> <span class="s1">&#39;userIds&#39;</span><span class="p">:</span> <span class="n">userids</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Role.get_by_groupid"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.get_by_groupid">[docs]</a>    <span class="k">def</span> <span class="nf">get_by_groupid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">group_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get role groups list.</span>
+
+<span class="sd">        :param group_id: id of group.</span>
+<span class="sd">        :return role_group: role group detail</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/getrolegroup&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;group_id&#39;</span><span class="p">:</span> <span class="n">group_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;role_group&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.get"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get role list</span>
+
+<span class="sd">        :param size: support paging query, it will take effect only when it is set at the same time with the offset parameter. This parameter represents the page size, the default value is 20, the maximum value is 200</span>
+<span class="sd">        :param offset: offset</span>
+
+<span class="sd">        :return roles list: {hasMore:True/False,&#39;list&#39;:[{&#39;groupId&#39;:&#39;xx&#39;,&#39;name&#39;:&#39;xx&#39;,&#39;roles&#39;:[{&#39;id&#39;:1,&#39;name&#39;:&#39;xx&#39;}]}]}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/list&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.get_detail"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.get_detail">[docs]</a>    <span class="k">def</span> <span class="nf">get_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roleid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get role detail</span>
+
+<span class="sd">        :param roleid</span>
+<span class="sd">        :return role</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/getrole&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleId&#39;</span><span class="p">:</span> <span class="n">roleid</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.get_users"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.get_users">[docs]</a>    <span class="k">def</span> <span class="nf">get_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">roleid</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get users by role.</span>
+
+<span class="sd">        :param roleid: role id.</span>
+<span class="sd">        :return result</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/simplelist&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;role_id&#39;</span><span class="p">:</span> <span class="n">roleid</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Role.set_role_scope"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.Role.set_role_scope">[docs]</a>    <span class="k">def</span> <span class="nf">set_role_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">roleid</span><span class="p">,</span> <span class="n">dept_ids</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        setting scope of role users.</span>
+
+<span class="sd">        :param userid: user id</span>
+<span class="sd">        :param roleid: role id</span>
+<span class="sd">        :param dept_ids: department ids, using , seperate </span>
+<span class="sd">        :return True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/scope/update&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="n">userid</span><span class="p">,</span> <span class="s1">&#39;role_id&#39;</span><span class="p">:</span> <span class="n">roleid</span><span class="p">,</span> <span class="s1">&#39;dept_ids&#39;</span><span class="p">:</span> <span class="n">dept_ids</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+
+
+<div class="viewcode-block" id="User"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">Core</span><span class="p">):</span>
+
+<div class="viewcode-block" id="User.create"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.create">[docs]</a>    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">mobile</span><span class="p">,</span> <span class="n">dept_ids</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create user new user.</span>
+
+<span class="sd">        :param name: name of user.</span>
+<span class="sd">        :param mobile: mobile</span>
+<span class="sd">        :param dept_ids: department ids</span>
+<span class="sd">        :param userid: unque id in enterprise. </span>
+<span class="sd">        :param hide_mobile: whether hide the mobile</span>
+<span class="sd">        :param telephone: tel </span>
+<span class="sd">        :param job_number: work number.</span>
+<span class="sd">        :param title: job title.</span>
+<span class="sd">        :param org_email: email</span>
+<span class="sd">        :param work_place: work place.</span>
+<span class="sd">        :param remark: remark</span>
+<span class="sd">        :param dept_order_list: the order user in departments.   [{&#39;dept_id&#39;:x,&#39;order&#39;:1}]</span>
+<span class="sd">        :param dept_title_list: the title user in departments. [{&#39;dept_id&#39;:x,&#39;title&#39;:&#39;xx&#39;}]</span>
+<span class="sd">        :param extension: extension</span>
+<span class="sd">        :param senior_mode: true/false </span>
+<span class="sd">        :param hired_date: hire date</span>
+<span class="sd">        :param login_email: login email</span>
+<span class="sd">        :param exclusive_account: whether special account.</span>
+<span class="sd">        :param exclusive_account_type: selection sso or dingtalk.</span>
+<span class="sd">        :param login_id: dingtalk login id</span>
+<span class="sd">        :param init_password: init password.</span>
+<span class="sd">        :return userid: id of new created User.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/user/create&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">:</span> <span class="n">mobile</span><span class="p">,</span> <span class="s1">&#39;dept_id_list&#39;</span><span class="p">:</span> <span class="n">dept_ids</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;userid&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.update"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">mobile</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        update user info.</span>
+
+<span class="sd">        :param userid: user id</span>
+<span class="sd">        :param mobile: mobile</span>
+<span class="sd">        :param dept_ids: department ids</span>
+<span class="sd">        :param userid: unque id in enterprise. </span>
+<span class="sd">        :param hide_mobile: whether hide the mobile</span>
+<span class="sd">        :param telephone: tel </span>
+<span class="sd">        :param job_number: work number.</span>
+<span class="sd">        :param title: job title.</span>
+<span class="sd">        :param org_email: email</span>
+<span class="sd">        :param work_place: work place.</span>
+<span class="sd">        :param remark: remark</span>
+<span class="sd">        :param dept_order_list: the order user in departments.   [{&#39;dept_id&#39;:x,&#39;order&#39;:1}]</span>
+<span class="sd">        :param dept_title_list: the title user in departments. [{&#39;dept_id&#39;:x,&#39;title&#39;:&#39;xx&#39;}]</span>
+<span class="sd">        :param extension: extension</span>
+<span class="sd">        :param senior_mode: true/false </span>
+<span class="sd">        :param hired_date: hire date</span>
+<span class="sd">        :param language: language of contacts.</span>
+<span class="sd">        :return result: True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/user/update&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="n">userid</span><span class="p">,</span> <span class="s1">&#39;mobile&#39;</span><span class="p">:</span> <span class="n">mobile</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="User.delete"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        delete user.</span>
+
+<span class="sd">        :param userid: user id</span>
+<span class="sd">        :return True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{URL}</span><span class="s1">/topapi/v2/user/delete&#39;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="n">userid</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="User.get"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">userid</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get user info.</span>
+
+<span class="sd">        :param userid: user id</span>
+<span class="sd">        :param lang: language of contact.</span>
+
+<span class="sd">        :return object: user infos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/user/get&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;userid&#39;</span><span class="p">:</span> <span class="n">userid</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">:</span> <span class="n">lang</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_users_by_department"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_users_by_department">[docs]</a>    <span class="k">def</span> <span class="nf">get_users_by_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get user name and ids by department.</span>
+<span class="sd">test_create_user</span>
+<span class="sd">        :param dept_id: id of department.</span>
+<span class="sd">        :param cursor: offset , default 0</span>
+<span class="sd">        :param size: page size , max 100.</span>
+<span class="sd">        :param order_field: order rule of department. </span>
+<span class="sd">        :param contain_access_limit: true/false whether contains limited users.</span>
+<span class="sd">        :param language: language of contacts</span>
+<span class="sd">        :return object: user and name list object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/listsimple&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">,</span> <span class="s1">&#39;cursor&#39;</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_userids_by_department"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_userids_by_department">[docs]</a>    <span class="k">def</span> <span class="nf">get_userids_by_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get user ids by department.</span>
+
+<span class="sd">        :param dept_id: department id</span>
+<span class="sd">        :return userId_list: list of userids. </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/listid&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;userid_list&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_userinfo_by_department"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_userinfo_by_department">[docs]</a>    <span class="k">def</span> <span class="nf">get_userinfo_by_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dept_id</span><span class="p">,</span> <span class="n">cursor</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get userinfos by department.</span>
+
+<span class="sd">        :param dept_id: id of department.</span>
+<span class="sd">        :param cursor: offset , default 0</span>
+<span class="sd">        :param size: page size , max 100.</span>
+<span class="sd">        :param order_field: order rule of department. </span>
+<span class="sd">        :param contain_access_limit: true/false whether contains limited users.</span>
+<span class="sd">        :param language: language of contacts</span>
+<span class="sd">        :return object: user &#39;and name list object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/user/list&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">,</span> <span class="s1">&#39;cursor&#39;</span><span class="p">:</span> <span class="n">cursor</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_users_count"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_users_count">[docs]</a>    <span class="k">def</span> <span class="nf">get_users_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">only_active</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get users count.</span>
+
+<span class="sd">        :param only_active: whether the unactive user into consideration.</span>
+<span class="sd">        :return count of users.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/count&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;only_active&#39;</span><span class="p">:</span> <span class="n">only_active</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;count&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_inactive_users"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_inactive_users">[docs]</a>    <span class="k">def</span> <span class="nf">get_inactive_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_date</span><span class="p">,</span> <span class="n">is_active</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get users who was  unactive.</span>
+
+<span class="sd">        :param query_date: query date, format: yyyyMMdd</span>
+<span class="sd">        :param is_active: whether user is active</span>
+<span class="sd">        :param offset: offset</span>
+<span class="sd">        :param size: page size.</span>
+<span class="sd">        :param dept_ids: department ids. get whole enterprise if dept_ids is None</span>
+<span class="sd">        :return result</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/inactive/user/v2/get&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;query_date&#39;</span><span class="p">:</span> <span class="n">query_date</span><span class="p">,</span> <span class="s1">&#39;is_active&#39;</span><span class="p">:</span> <span class="n">is_active</span><span class="p">,</span>
+                <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">}</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_managers"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_managers">[docs]</a>    <span class="k">def</span> <span class="nf">get_managers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get user managers.</span>
+
+<span class="sd">        :return list of result [userid,sys_level]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/listadmin&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_manager_contact_scope"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_manager_contact_scope">[docs]</a>    <span class="k">def</span> <span class="nf">get_manager_contact_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get scope of manager&#39;s contacts</span>
+
+<span class="sd">        :param: user_id: manager user id.</span>
+<span class="sd">        :return dept_is: departments which he can manage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/get_admin_scope&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;dept_ids&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_manager_app_scope"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_manager_app_scope">[docs]</a>    <span class="k">def</span> <span class="nf">get_manager_app_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get scope of manager&#39;s apps</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># [TODO]</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="User.get_userid_by_phone"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_userid_by_phone">[docs]</a>    <span class="k">def</span> <span class="nf">get_userid_by_phone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobile</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get userid by phone number.</span>
+
+<span class="sd">        :param mobile: phone number.</span>
+<span class="sd">        :return userid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/user/getbymobile&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mobile&#39;</span><span class="p">:</span> <span class="n">mobile</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;userid&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_userid_by_unionid"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_userid_by_unionid">[docs]</a>    <span class="k">def</span> <span class="nf">get_userid_by_unionid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unionid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get userid by union id.</span>
+
+<span class="sd">        :param unionid: unionid</span>
+<span class="sd">        :return dict: {contact_type,userid}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/user/getbyunionid&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;unionid&#39;</span><span class="p">:</span> <span class="n">unionid</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="User.get_unlogin_users"><a class="viewcode-back" href="../../dingtalk.html#dingtalk.contact.User.get_unlogin_users">[docs]</a>    <span class="k">def</span> <span class="nf">get_unlogin_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_date</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get user who havent login during last month.</span>
+
+<span class="sd">        :param query_date: query date, format yyyyMMdd</span>
+<span class="sd">        :param offset: offset</span>
+<span class="sd">        :param size: page size.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/inactive/user/get&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;query_date&#39;</span><span class="p">:</span> <span class="n">query_date</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span> <span class="n">offset</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">size</span><span class="p">}</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Kevin Kong.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

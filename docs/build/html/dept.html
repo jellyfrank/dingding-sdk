@@ -92,7 +92,7 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">部门管理</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-..dingtalk.contact">创建部门</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-dingtalk.contact">创建部门</a></li>
 </ul>
 </li>
 </ul>
@@ -164,8 +164,198 @@
             
   <div class="section" id="id1">
 <h1>部门管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-..dingtalk.contact">
-<span id="id2"></span><h2>创建部门<a class="headerlink" href="#module-..dingtalk.contact" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-dingtalk.contact">
+<span id="id2"></span><h2>创建部门<a class="headerlink" href="#module-dingtalk.contact" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dingtalk.contact.Department">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">dingtalk.contact.</span></code><code class="sig-name descname"><span class="pre">Department</span></code><a class="reference internal" href="_modules/dingtalk/contact.html#Department"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.create">
+<code class="sig-name descname"><span class="pre">create</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">name</span></span></em>, <em><span class="n"><span class="pre">parent_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>create a department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – department name</li>
+<li><strong>parent_id</strong> – parent department id, default 1 root department.</li>
+<li><strong>hide_dept</strong> – whether hide the department</li>
+<li><strong>dept_permits</strong> – who can view the department, limit 200 departments.</li>
+<li><strong>user_permits</strong> – who can view the department, limit 200 persons.</li>
+<li><strong>outer_dept</strong> – restrict members of this department from viewing the address book.</li>
+<li><strong>outer_dept_only_self</strong> – whether members of this department can only see the address book of their department and subordinate departments</li>
+<li><strong>outer_permit_users</strong> – specify the userid list of address book users that the members of this department can view, the total cannot exceed 200</li>
+<li><strong>outer_permit_depts</strong> – specify a list of department IDs in the address book that members of this department can view, the total number cannot exceed 200</li>
+<li><strong>create_dept_group</strong> – whether to create an enterprise group associated with this department</li>
+<li><strong>order</strong> – for the sort value in the parent department, the lower order value is sorted first</li>
+<li><strong>source_identifier</strong> – department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return dept_id:</th><td class="field-body"><p class="first last">deparment id of new created department.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete department</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dept_id</strong> – department id which is going to be deleted.</td>
+</tr>
+</tbody>
+</table>
+<p>:return True</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em><span class="n"><span class="pre">lang</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get department list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dept_id</strong> – int id of department, get all departments if dept_id is None</li>
+<li><strong>lang</strong> – language of contacts</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">list of departments</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.get_children">
+<code class="sig-name descname"><span class="pre">get_children</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.get_children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.get_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>get childen of the department.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param dept_id:</th><td class="field-body">department id</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">return departments:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">id list of children deparments</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.get_info">
+<code class="sig-name descname"><span class="pre">get_info</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em>, <em><span class="n"><span class="pre">lang</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.get_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>get detail infos of department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dept_id</strong> – department id</li>
+<li><strong>lang</strong> – language of department.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">department infos.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.get_parents">
+<code class="sig-name descname"><span class="pre">get_parents</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.get_parents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.get_parents" title="Permalink to this definition">¶</a></dt>
+<dd><p>get parents of one department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dept_id</strong> – id of department</li>
+<li><strong>parent_id_list</strong> – id list of parent departments</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return parent_ids:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last">list of parent ids.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.get_user_departments">
+<code class="sig-name descname"><span class="pre">get_user_departments</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">userid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.get_user_departments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.get_user_departments" title="Permalink to this definition">¶</a></dt>
+<dd><p>get all departments of given user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>userid</strong> – user id.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return parent_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">user’s departments.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Department.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Department.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>udpate department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dept_id</strong> – the department id which to update.</li>
+<li><strong>name</strong> – department name</li>
+<li><strong>language</strong> – language of department.</li>
+<li><strong>parent_id</strong> – parent department id, default 1 root department.</li>
+<li><strong>hide_dept</strong> – whether hide the department</li>
+<li><strong>dept_permits</strong> – who can view the department, limit 200 departments.</li>
+<li><strong>user_permits</strong> – who can view the department, limit 200 persons.</li>
+<li><strong>outer_dept</strong> – restrict members of this department from viewing the address book.</li>
+<li><strong>outer_dept_only_self</strong> – whether members of this department can only see the address book of their department and subordinate departments</li>
+<li><strong>outer_permit_users</strong> – specify the userid list of address book users that the members of this department can view, the total cannot exceed 200</li>
+<li><strong>outer_permit_depts</strong> – specify a list of department IDs in the address book that members of this department can view, the total number cannot exceed 200</li>
+<li><strong>create_dept_group</strong> – whether to create an enterprise group associated with this department</li>
+<li><strong>order</strong> – for the sort value in the parent department, the lower order value is sorted first</li>
+<li><strong>source_identifier</strong> – department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing</li>
+<li><strong>auto_add_user</strong> – whether auto add user into group when user been added to department.</li>
+<li><strong>dept_manager_userid_list</strong> – update manager list of department</li>
+<li><strong>group_contain_sub_dept</strong> – whether has child department.</li>
+<li><strong>group_contain_outer_dept</strong> – whether has outside department</li>
+<li><strong>group_contain_hidden_dept</strong> – whether has hide department.</li>
+<li><strong>org_dept_owner</strong> – the host of group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True or False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 

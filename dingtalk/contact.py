@@ -10,12 +10,11 @@ class Department(Core):
     def get(self, dept_id=None, lang=None):
         """
         get department list
+       
+        :param dept_id: int id of department, get all departments if dept_id is None
+        :param lang: language of contacts
 
-        params:
-        dept_id: int id of department, get all departments if dept_id is None
-        lang: language of contacts
-
-        :return :list of departments
+        :return result: list of departments
         """
         # [{'auto_add_user': True, 'create_dept_group': True, 'dept_id': 147953855, 'name': '财务部', 'parent_id': 1}]
         url = f"{URL}/topapi/v2/department/listsub"
@@ -40,7 +39,7 @@ class Department(Core):
         :param outer_permit_depts: specify a list of department IDs in the address book that members of this department can view, the total number cannot exceed 200
         :param create_dept_group: whether to create an enterprise group associated with this department
         :param order: for the sort value in the parent department, the lower order value is sorted first
-        :source_identifier: department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing
+        :param source_identifier: department identification field, developers can use this field to uniquely identify a department and map it with the department in the external address book of DingDing
 
         :return dept_id: deparment id of new created department.
         """
@@ -75,7 +74,7 @@ class Department(Core):
         :param group_contain_hidden_dept: whether has hide department.
         :param org_dept_owner: the host of group.
 
-        :return True or False
+        :return result: True or False
         """
         url = f"{URL}/topapi/v2/department/update"
         data = {'dept_id': dept_id}
@@ -88,7 +87,8 @@ class Department(Core):
         delete department
 
         :param dept_id: department id which is going to be deleted.
-        :return True
+        
+        :return result: True
         """
         url = f"{URL}/topapi/v2/department/delete"
         data = {'dept_id': dept_id}
@@ -101,6 +101,8 @@ class Department(Core):
 
         :param dept_id: department id
         :param lang: language of department.
+
+        :return result: department infos.
         """
         url = f"{URL}/topapi/v2/department/get"
         data = {'dept_id': dept_id, 'language': lang}
@@ -123,7 +125,8 @@ class Department(Core):
         """
         get all departments of given user.
 
-        :param userid: user id 
+        :param userid: user id.
+
         :return parent_list: user's departments.
         """
         url = f"{URL}/topapi/v2/department/listparentbyuser"
@@ -137,6 +140,8 @@ class Department(Core):
 
         :param dept_id: id of department
         :param parent_id_list: id list of parent departments
+
+        :return parent_ids: list of parent ids.
         """
         url = f"{URL}/topapi/v2/department/listparentbydept"
         data = {'dept_id': dept_id}
@@ -176,7 +181,8 @@ class Role(Core):
 
         :param roleid: role id
         :param rolename: rolename
-        :return True
+
+        :return result: True
         """
         url = f"{URL}/role/update_role"
         data = {'roleId': roleid, 'roleName': rolename}
@@ -239,6 +245,7 @@ class Role(Core):
 
         :param size: support paging query, it will take effect only when it is set at the same time with the offset parameter. This parameter represents the page size, the default value is 20, the maximum value is 200
         :param offset: offset
+
         :return roles list: {hasMore:True/False,'list':[{'groupId':'xx','name':'xx','roles':[{'id':1,'name':'xx'}]}]}
         """
         url = f"{URL}/topapi/role/list"
@@ -345,7 +352,7 @@ class User(Core):
         :param senior_mode: true/false 
         :param hired_date: hire date
         :param language: language of contacts.
-        :return True
+        :return result: True
         """
         url = f"{URL}/topapi/v2/user/update"
         data = {'userid': userid, 'mobile': mobile}
@@ -371,6 +378,7 @@ class User(Core):
 
         :param userid: user id
         :param lang: language of contact.
+
         :return object: user infos.
         """
         url = f"{URL}/topapi/v2/user/get"
