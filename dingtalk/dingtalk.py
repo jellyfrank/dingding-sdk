@@ -3,11 +3,12 @@
 # @Author  : Kevin Kong (kfx2007@163.com)
 
 from .core import Core
-from .contact import Department, Role
+from .contact import Department, Role, User
+
 
 class DingTalk(object):
 
-    def __init__(self, corpid, appkey, appsecret,suitticket=None):
+    def __init__(self, corpid, appkey, appsecret, suitticket=None):
         """
         init dingtalk client
 
@@ -23,8 +24,9 @@ class DingTalk(object):
         self._suitticket = suitticket
 
     core = Core()
-    department  = Department()
+    department = Department()
     role = Role()
+    user = User()
 
     # def _get_enterprise_access_token(self):
     #     """

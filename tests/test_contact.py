@@ -11,6 +11,8 @@ class TestContact(TestCase):
 
     department_id = None
     role_id = None
+    group_id = None
+    user_id = None
 
     @classmethod
     def setUpClass(cls):
@@ -56,16 +58,24 @@ class TestContact(TestCase):
         self.assertTrue(res)
 
     def test_create_role(self):
-        res = self.dingtalk.role.create("TestRole")
+        res = self.dingtalk.role.create("TestRole", TestContact.group_id)
         self.assertIsInstance(res, int)
         TestContact.role_id = res
 
     def test_create_role_group(self):
-        res = self.dingtalk.role.create_group("TestRoleGroup")
-        self.assertIsInstance(res, int)
+        # get role first
+        res = self.dingtalk.role.get()
+        for group in res['list']:
+            if group['name'].lower() == 'testrolegroup':
+                TestContact.group_id = group['groupId']
+
+        if not TestContact.group_id:
+            res = self.dingtalk.role.create_group("TestRoleGroup")
+            self.assertIsInstance(res, int)
+            TestContact.group_id = res
 
     def test_update_role(self):
-        res = self.dingtalk.role.update_role(TestContact.role_id, "TESTRole")
+        res = self.dingtalk.role.update(TestContact.role_id, "TESTRole")
         self.assertTrue(res)
 
     def test_add_roles_to_users(self):
@@ -84,6 +94,37 @@ class TestContact(TestCase):
         res = self.dingtalk.role.get_detail(TestContact.role_id)
         self.assertIsInstance(res, dict)
 
+    def test_create_user(self):
+        res = self.dingtalk.user.create(
+            "TestUser", "18512345678", str(self.department_id))
+        self.assertIsInstance(res, int)
+        TestContact.user_id = res
+
+    def test_update_user(self):
+        res = self.dingtalk.user.update(TestContact.user_id, "18512345678")
+        self.assertTrue(res)
+
+    def test_delete_user(self):
+        res = self.dingtalk.user.delete(TestContact.user_id)
+        self.assertTrue(res)
+
+    def test_get_user_info(self):
+        res = self.dingtalk.user.get(TestContact.user_id)
+        self.assertIsInstance(res, dict)
+
+    def test_get_users_by_dept(self):
+        res = self.dingtalk.user.get_users_by_department(
+            TestContact.department_id)
+        self.assertIsInstance(res, dict)
+
+    def test_get_usersids_by_dept(self):
+        res = self.dingtalk.user.get_userids_by_department(1)
+        self.assertIsInstance(res, list)
+
+    def test_get_userinfo_by_dept(self):
+        res = self.dingtalk.user.ge_userinfo_by_department(1)
+        self.assertIsInstance(res, dict)
+
 
 if __name__ == "__main__":
     suit = TestSuite()
@@ -92,6 +133,19 @@ if __name__ == "__main__":
     suit.addTest(TestContact("test_update_department"))
     suit.addTest(TestContact("test_get_department_children"))
     suit.addTest(TestContact("test_get_parents"))
-    suit.addTest(TestContact("test_delete_department"))
     suit.addTest(TestContact("test_create_role_group"))
+    suit.addTest(TestContact("test_create_role"))
+    suit.addTest(TestContact("test_update_role"))
+    suit.addTest(TestContact("test_get_role_list"))
+    suit.addTest(TestContact("test_get_role_detail"))
+    # suit.addTest(TestContact("test_create_user"))
+    # suit.addTest(TestContact("test_get_user_info"))
+    suit.addTest(TestContact("test_get_users_by_dept"))
+    suit.addTest(TestContact("test_get_usersids_by_dept"))
+    suit.addTest(TestContact("test_get_userinfo_by_dept"))
+
+    # suit.addTest(TestContact("test_delete_user"))
+    suit.addTest(TestContact("test_delete_role"))
+    suit.addTest(TestContact("test_delete_department"))
+
     unittest.TextTestRunner(verbosity=3).run(suit)

@@ -8,8 +8,11 @@ from hashlib import sha256
 from base64 import b64encode
 from .exceptions import DingTlakException
 import time
+import logging
 
 URL = "https://oapi.dingtalk.com"
+
+_logger = logging.getLogger(__name__)
 
 
 class Core(object):
@@ -65,6 +68,7 @@ class Core(object):
             res = requests.post(
                 f"{url}?access_token={access_token}", json=data).json()
             if res['errcode'] != 0:
+                _logger.debug(f"[DingTalk Request]:{data}")
                 raise DingTlakException(**res)
             return res
         except Exception as err:

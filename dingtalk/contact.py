@@ -170,7 +170,7 @@ class Role(Core):
         res = self._post(url, data)
         return res['groupId']
 
-    def update_role(self, roleid, rolename):
+    def update(self, roleid, rolename):
         """
         update role
 
@@ -179,7 +179,7 @@ class Role(Core):
         :return True
         """
         url = f"{URL}/role/update_role"
-        data = {'roleid': roleid, 'rolename': rolename}
+        data = {'roleId': roleid, 'roleName': rolename}
         res = self._post(url, data)
         return True
 
@@ -239,7 +239,7 @@ class Role(Core):
 
         :param size: support paging query, it will take effect only when it is set at the same time with the offset parameter. This parameter represents the page size, the default value is 20, the maximum value is 200
         :param offset: offset
-        :return roles list.
+        :return roles list: {hasMore:True/False,'list':[{'groupId':'xx','name':'xx','roles':[{'id':1,'name':'xx'}]}]}
         """
         url = f"{URL}/topapi/role/list"
         data = {'size': size, 'offset': offset}
@@ -269,5 +269,160 @@ class Role(Core):
 
         url = f"{URL}/topapi/role/simplelist"
         data = {'role_id': roleid, 'size': size, 'offset': offset}
+        res = self._post(url, data)
+        return res['result']
+
+    def set_role_scope(self, userid, roleid, dept_ids):
+        """
+        setting scope of role users.
+
+        :param userid: user id
+        :param roleid: role id
+        :param dept_ids: department ids, using , seperate 
+        :return True
+        """
+
+        url = f"{URL}/topapi/role/scope/update"
+        data = {'userid': userid, 'role_id': roleid, 'dept_ids': dept_ids}
+        res = self._post(url, data)
+        return True
+
+
+class User(Core):
+
+    def create(self, name, mobile, dept_ids, **kwargs):
+        """
+        create user new user.
+
+        :param name: name of user.
+        :param mobile: mobile
+        :param dept_ids: department ids
+        :param userid: unque id in enterprise. 
+        :param hide_mobile: whether hide the mobile
+        :param telephone: tel 
+        :param job_number: work number.
+        :param title: job title.
+        :param org_email: email
+        :param work_place: work place.
+        :param remark: remark
+        :param dept_order_list: the order user in departments.   [{'dept_id':x,'order':1}]
+        :param dept_title_list: the title user in departments. [{'dept_id':x,'title':'xx'}]
+        :param extension: extension
+        :param senior_mode: true/false 
+        :param hired_date: hire date
+        :param login_email: login email
+        :param exclusive_account: whether special account.
+        :param exclusive_account_type: selection sso or dingtalk.
+        :param login_id: dingtalk login id
+        :param init_password: init password.
+        :return userid: id of new created User.
+        """
+
+        url = f"{URL}/topapi/v2/user/create"
+        data = {'name': name, 'mobile': mobile, 'dept_id_list': dept_ids}
+        data.update(kwargs)
+        res = self._post(url, data)
+        return res['result']['userid']
+
+    def update(self, userid, mobile, **kwargs):
+        """
+        update user info.
+
+        :param userid: user id
+        :param mobile: mobile
+        :param dept_ids: department ids
+        :param userid: unque id in enterprise. 
+        :param hide_mobile: whether hide the mobile
+        :param telephone: tel 
+        :param job_number: work number.
+        :param title: job title.
+        :param org_email: email
+        :param work_place: work place.
+        :param remark: remark
+        :param dept_order_list: the order user in departments.   [{'dept_id':x,'order':1}]
+        :param dept_title_list: the title user in departments. [{'dept_id':x,'title':'xx'}]
+        :param extension: extension
+        :param senior_mode: true/false 
+        :param hired_date: hire date
+        :param language: language of contacts.
+        :return True
+        """
+        url = f"{URL}/topapi/v2/user/update"
+        data = {'userid': userid, 'mobile': mobile}
+        data.update(kwargs)
+        res = self._post(url, data)
+        return True
+
+    def delete(self, userid):
+        """
+        delete user.
+
+        :param userid: user id
+        :return True
+        """
+        url = f'{URL}/topapi/v2/user/delete'
+        data = {'userid': userid}
+        self._post(url, data)
+        return True
+
+    def get(self, userid, lang=None):
+        """
+        get user info.
+
+        :param userid: user id
+        :param lang: language of contact.
+        :return object: user infos.
+        """
+        url = f"{URL}/topapi/v2/user/get"
+        data = {'userid': userid, 'language': lang}
+        res = self._post(url, data)
+        return res['result']
+
+    def get_users_by_department(self, dept_id, cursor=0, size=10, **kwargs):
+        """
+        get user name and ids by department.
+test_create_user
+        :param dept_id: id of department.
+        :param cursor: offset , default 0
+        :param size: page size , max 100.
+        :param order_field: order rule of department. 
+        :param contain_access_limit: true/false whether contains limited users.
+        :param language: language of contacts
+        :return object: user and name list object
+        """
+
+        url = f"{URL}/topapi/user/listsimple"
+        data = {'dept_id': dept_id, 'cursor': cursor, 'size': size}
+        res = self._post(url, data)
+        return res['result']
+
+    def get_userids_by_department(self, dept_id):
+        """
+        get user ids by department.
+
+        :param dept_id: department id
+        :return userId_list: list of userids. 
+        """
+        url = f"{URL}/topapi/user/listid"
+        data = {'dept_id': dept_id}
+        res = self._post(url, data)
+        return res['result']['userid_list']
+
+    def ge_userinfo_by_department(self, dept_id, cursor=0, size=10, **kwargs):
+        """
+        get userinfos by department.
+
+        :param dept_id: id of department.
+        :param cursor: offset , default 0
+        :param size: page size , max 100.
+        :param order_field: order rule of department. 
+        :param contain_access_limit: true/false whether contains limited users.
+        :param language: language of contacts
+        :return object: user 'and name list object
+        """
+
+        url = f"{URL}/topapi/v2/user/list/"
+        data = {'dept_id': dept_id, 'cursor': cursor, 'size': size}
+        data.update(kwargs)
         res = self._post(url, data)
         return res['result']
