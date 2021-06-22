@@ -157,6 +157,8 @@ class Role(Core):
 
         :param name: role name
         :param groupid: group id
+
+        :return role_id: id of new created role.
         """
         url = f"{URL}/role/add_role"
         data = {'roleName': name, 'groupId': groupid}
@@ -195,7 +197,8 @@ class Role(Core):
 
         :param roles: roles
         :param users: users
-        :return True
+
+        :return result: True
         """
         url = "f{URL}/role/addrolesforemps"
         data = {'roleIds': roles, 'userIds': users}
@@ -207,7 +210,8 @@ class Role(Core):
         delete role
 
         :param role_id: id of role which is going to be deleted.
-        :return True
+
+        :return result: True
         """
         url = f"{URL}/topapi/role/deleterole"
         data = {'role_id': role_id}
@@ -220,6 +224,8 @@ class Role(Core):
 
         :param roleIds: roles
         :param userids: users
+
+        :return result: True
         """
         url = f"{URL}/topapi/role/removerolesforemps"
         data = {'roleIds': roleids, 'userIds': userids}
@@ -231,6 +237,7 @@ class Role(Core):
         get role groups list.
 
         :param group_id: id of group.
+
         :return role_group: role group detail
         """
 
@@ -257,8 +264,9 @@ class Role(Core):
         """
         get role detail
 
-        :param roleid
-        :return role
+        :param roleid: id of the role.
+
+        :return role: role
         """
 
         url = f"{URL}/topapi/role/getrole"
@@ -271,7 +279,10 @@ class Role(Core):
         get users by role.
 
         :param roleid: role id.
-        :return result
+        :param size: page size
+        :param offset: offset
+
+        :return result:user list
         """
 
         url = f"{URL}/topapi/role/simplelist"
@@ -286,7 +297,8 @@ class Role(Core):
         :param userid: user id
         :param roleid: role id
         :param dept_ids: department ids, using , seperate 
-        :return True
+
+        :return result: True
         """
 
         url = f"{URL}/topapi/role/scope/update"

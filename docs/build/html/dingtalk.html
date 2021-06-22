@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速开始</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dept.html">部门管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dept.html">通讯录</a></li>
 </ul>
 
             
@@ -210,9 +210,10 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dept_id</strong> – department id which is going to be deleted.</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body">True</td>
+</tr>
 </tbody>
 </table>
-<p>:return True</p>
 </dd></dl>
 
 <dl class="py method">
@@ -368,15 +369,17 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>roles</strong> – roles</li>
 <li><strong>users</strong> – users</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
 </tbody>
 </table>
-<p>:return True</p>
 </dd></dl>
 
 <dl class="py method">
@@ -387,10 +390,13 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>name</strong> – role name</li>
 <li><strong>groupid</strong> – group id</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return role_id:</th><td class="field-body"><p class="first last">id of new created role.</p>
 </td>
 </tr>
 </tbody>
@@ -423,9 +429,10 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>role_id</strong> – id of role which is going to be deleted.</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body">True</td>
+</tr>
 </tbody>
 </table>
-<p>:return True</p>
 </dd></dl>
 
 <dl class="py method">
@@ -436,10 +443,13 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>roleIds</strong> – roles</li>
 <li><strong>userids</strong> – users</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
 </td>
 </tr>
 </tbody>
@@ -489,8 +499,15 @@
 <dt class="sig sig-object py" id="dingtalk.contact.Role.get_detail">
 <code class="sig-name descname"><span class="pre">get_detail</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roleid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.get_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.get_detail" title="Permalink to this definition">¶</a></dt>
 <dd><p>get role detail</p>
-<p>:param roleid
-:return role</p>
+<p>:param roleid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return role:</th><td class="field-body">role</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="py method">
@@ -501,11 +518,16 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>roleid</strong> – role id.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>roleid</strong> – role id.</li>
+<li><strong>size</strong> – page size</li>
+<li><strong>offset</strong> – offset</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
-<p>:return result</p>
+<p>:return result:user list</p>
 </dd></dl>
 
 <dl class="py method">
@@ -516,16 +538,18 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>userid</strong> – user id</li>
 <li><strong>roleid</strong> – role id</li>
 <li><strong>dept_ids</strong> – department ids, using , seperate</li>
 </ul>
 </td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
 </tbody>
 </table>
-<p>:return True</p>
 </dd></dl>
 
 <dl class="py method">

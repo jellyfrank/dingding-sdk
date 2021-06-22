@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>部门管理 &mdash; dingding-sdk 0.0.1 documentation</title>
+  <title>通讯录 &mdash; dingding-sdk 0.0.1 documentation</title>
   
 
   
@@ -91,8 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速开始</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">部门管理</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-dingtalk.contact">创建部门</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">通讯录</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-dingtalk.contact">部门管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-0">用户管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-1">角色管理</a></li>
 </ul>
 </li>
 </ul>
@@ -143,7 +145,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>部门管理</li>
+      <li>通讯录</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,9 +165,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>部门管理<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<h1>通讯录<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-dingtalk.contact">
-<span id="id2"></span><h2>创建部门<a class="headerlink" href="#module-dingtalk.contact" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>部门管理<a class="headerlink" href="#module-dingtalk.contact" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="dingtalk.contact.Department">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">dingtalk.contact.</span></code><code class="sig-name descname"><span class="pre">Department</span></code><a class="reference internal" href="_modules/dingtalk/contact.html#Department"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Department" title="Permalink to this definition">¶</a></dt>
@@ -210,9 +212,10 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dept_id</strong> – department id which is going to be deleted.</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body">True</td>
+</tr>
 </tbody>
 </table>
-<p>:return True</p>
 </dd></dl>
 
 <dl class="py method">
@@ -348,6 +351,536 @@
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True or False</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-0">
+<span id="id3"></span><h2>用户管理<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dingtalk.contact.User">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">dingtalk.contact.</span></code><code class="sig-name descname"><span class="pre">User</span></code><a class="reference internal" href="_modules/dingtalk/contact.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.create">
+<code class="sig-name descname"><span class="pre">create</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">name</span></span></em>, <em><span class="n"><span class="pre">mobile</span></span></em>, <em><span class="n"><span class="pre">dept_ids</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>create user new user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – name of user.</li>
+<li><strong>mobile</strong> – mobile</li>
+<li><strong>dept_ids</strong> – department ids</li>
+<li><strong>userid</strong> – unque id in enterprise.</li>
+<li><strong>hide_mobile</strong> – whether hide the mobile</li>
+<li><strong>telephone</strong> – tel</li>
+<li><strong>job_number</strong> – work number.</li>
+<li><strong>title</strong> – job title.</li>
+<li><strong>org_email</strong> – email</li>
+<li><strong>work_place</strong> – work place.</li>
+<li><strong>remark</strong> – remark</li>
+<li><strong>dept_order_list</strong> – the order user in departments.   [{‘dept_id’:x,’order’:1}]</li>
+<li><strong>dept_title_list</strong> – the title user in departments. [{‘dept_id’:x,’title’:’xx’}]</li>
+<li><strong>extension</strong> – extension</li>
+<li><strong>senior_mode</strong> – true/false</li>
+<li><strong>hired_date</strong> – hire date</li>
+<li><strong>login_email</strong> – login email</li>
+<li><strong>exclusive_account</strong> – whether special account.</li>
+<li><strong>exclusive_account_type</strong> – selection sso or dingtalk.</li>
+<li><strong>login_id</strong> – dingtalk login id</li>
+<li><strong>init_password</strong> – init password.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return userid:</th><td class="field-body"><p class="first last">id of new created User.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">userid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>userid</strong> – user id</td>
+</tr>
+</tbody>
+</table>
+<p>:return True</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">userid</span></span></em>, <em><span class="n"><span class="pre">lang</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get user info.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>userid</strong> – user id</li>
+<li><strong>lang</strong> – language of contact.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return object:</th><td class="field-body"><p class="first last">user infos.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_inactive_users">
+<code class="sig-name descname"><span class="pre">get_inactive_users</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">query_date</span></span></em>, <em><span class="n"><span class="pre">is_active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_inactive_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_inactive_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>get users who was  unactive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query_date</strong> – query date, format: yyyyMMdd</li>
+<li><strong>is_active</strong> – whether user is active</li>
+<li><strong>offset</strong> – offset</li>
+<li><strong>size</strong> – page size.</li>
+<li><strong>dept_ids</strong> – department ids. get whole enterprise if dept_ids is None</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:return result</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_manager_app_scope">
+<code class="sig-name descname"><span class="pre">get_manager_app_scope</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_manager_app_scope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_manager_app_scope" title="Permalink to this definition">¶</a></dt>
+<dd><p>get scope of manager’s apps</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_manager_contact_scope">
+<code class="sig-name descname"><span class="pre">get_manager_contact_scope</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_manager_contact_scope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_manager_contact_scope" title="Permalink to this definition">¶</a></dt>
+<dd><p>get scope of manager’s contacts</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">user_id: manager user id.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return dept_is:</th><td class="field-body">departments which he can manage.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_managers">
+<code class="sig-name descname"><span class="pre">get_managers</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_managers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_managers" title="Permalink to this definition">¶</a></dt>
+<dd><p>get user managers.</p>
+<p>:return list of result [userid,sys_level]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_unlogin_users">
+<code class="sig-name descname"><span class="pre">get_unlogin_users</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">query_date</span></span></em>, <em><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_unlogin_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_unlogin_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>get user who havent login during last month.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>query_date</strong> – query date, format yyyyMMdd</li>
+<li><strong>offset</strong> – offset</li>
+<li><strong>size</strong> – page size.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_userid_by_phone">
+<code class="sig-name descname"><span class="pre">get_userid_by_phone</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">mobile</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_userid_by_phone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_userid_by_phone" title="Permalink to this definition">¶</a></dt>
+<dd><p>get userid by phone number.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mobile</strong> – phone number.</td>
+</tr>
+</tbody>
+</table>
+<p>:return userid</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_userid_by_unionid">
+<code class="sig-name descname"><span class="pre">get_userid_by_unionid</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">unionid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_userid_by_unionid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_userid_by_unionid" title="Permalink to this definition">¶</a></dt>
+<dd><p>get userid by union id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>unionid</strong> – unionid</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return dict:</th><td class="field-body">{contact_type,userid}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_userids_by_department">
+<code class="sig-name descname"><span class="pre">get_userids_by_department</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_userids_by_department"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_userids_by_department" title="Permalink to this definition">¶</a></dt>
+<dd><p>get user ids by department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dept_id</strong> – department id</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return userId_list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">list of userids.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_userinfo_by_department">
+<code class="sig-name descname"><span class="pre">get_userinfo_by_department</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em>, <em><span class="n"><span class="pre">cursor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_userinfo_by_department"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_userinfo_by_department" title="Permalink to this definition">¶</a></dt>
+<dd><p>get userinfos by department.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dept_id</strong> – id of department.</li>
+<li><strong>cursor</strong> – offset , default 0</li>
+<li><strong>size</strong> – page size , max 100.</li>
+<li><strong>order_field</strong> – order rule of department.</li>
+<li><strong>contain_access_limit</strong> – true/false whether contains limited users.</li>
+<li><strong>language</strong> – language of contacts</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return object:</th><td class="field-body"><p class="first last">user ‘and name list object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_users_by_department">
+<code class="sig-name descname"><span class="pre">get_users_by_department</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">dept_id</span></span></em>, <em><span class="n"><span class="pre">cursor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_users_by_department"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_users_by_department" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div>get user name and ids by department.</div></blockquote>
+<dl class="docutils">
+<dt>test_create_user</dt><dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">param dept_id:</th><td class="field-body">id of department.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">param cursor:</th><td class="field-body">offset , default 0</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">param size:</th><td class="field-body">page size , max 100.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">param order_field:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">order rule of department.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2">param contain_access_limit:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">true/false whether contains limited users.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">param language:</th><td class="field-body">language of contacts</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">return object:</th><td class="field-body">user and name list object</td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.get_users_count">
+<code class="sig-name descname"><span class="pre">get_users_count</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">only_active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.get_users_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.get_users_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>get users count.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>only_active</strong> – whether the unactive user into consideration.</td>
+</tr>
+</tbody>
+</table>
+<p>:return count of users.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.User.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">userid</span></span></em>, <em><span class="n"><span class="pre">mobile</span></span></em>, <em><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#User.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.User.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>update user info.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>userid</strong> – user id</li>
+<li><strong>mobile</strong> – mobile</li>
+<li><strong>dept_ids</strong> – department ids</li>
+<li><strong>userid</strong> – unque id in enterprise.</li>
+<li><strong>hide_mobile</strong> – whether hide the mobile</li>
+<li><strong>telephone</strong> – tel</li>
+<li><strong>job_number</strong> – work number.</li>
+<li><strong>title</strong> – job title.</li>
+<li><strong>org_email</strong> – email</li>
+<li><strong>work_place</strong> – work place.</li>
+<li><strong>remark</strong> – remark</li>
+<li><strong>dept_order_list</strong> – the order user in departments.   [{‘dept_id’:x,’order’:1}]</li>
+<li><strong>dept_title_list</strong> – the title user in departments. [{‘dept_id’:x,’title’:’xx’}]</li>
+<li><strong>extension</strong> – extension</li>
+<li><strong>senior_mode</strong> – true/false</li>
+<li><strong>hired_date</strong> – hire date</li>
+<li><strong>language</strong> – language of contacts.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-1">
+<span id="id4"></span><h2>角色管理<a class="headerlink" href="#module-1" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dingtalk.contact.Role">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">dingtalk.contact.</span></code><code class="sig-name descname"><span class="pre">Role</span></code><a class="reference internal" href="_modules/dingtalk/contact.html#Role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.add_roles_to_users">
+<code class="sig-name descname"><span class="pre">add_roles_to_users</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roles</span></span></em>, <em><span class="n"><span class="pre">users</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.add_roles_to_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.add_roles_to_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>add roles to users.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>roles</strong> – roles</li>
+<li><strong>users</strong> – users</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.create">
+<code class="sig-name descname"><span class="pre">create</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">name</span></span></em>, <em><span class="n"><span class="pre">groupid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>create role</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> – role name</li>
+<li><strong>groupid</strong> – group id</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return role_id:</th><td class="field-body"><p class="first last">id of new created role.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.create_group">
+<code class="sig-name descname"><span class="pre">create_group</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.create_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.create_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>create role group</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> – group name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return groupId:</th><td class="field-body">group id</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">role_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete role</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>role_id</strong> – id of role which is going to be deleted.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body">True</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.delete_users_roles">
+<code class="sig-name descname"><span class="pre">delete_users_roles</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roleids</span></span></em>, <em><span class="n"><span class="pre">userids</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.delete_users_roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.delete_users_roles" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete users’ roles</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>roleIds</strong> – roles</li>
+<li><strong>userids</strong> – users</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get role list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>size</strong> – support paging query, it will take effect only when it is set at the same time with the offset parameter. This parameter represents the page size, the default value is 20, the maximum value is 200</li>
+<li><strong>offset</strong> – offset</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return roles list:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body"><p class="first last">{hasMore:True/False,’list’:[{‘groupId’:’xx’,’name’:’xx’,’roles’:[{‘id’:1,’name’:’xx’}]}]}</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.get_by_groupid">
+<code class="sig-name descname"><span class="pre">get_by_groupid</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">group_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.get_by_groupid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.get_by_groupid" title="Permalink to this definition">¶</a></dt>
+<dd><p>get role groups list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>group_id</strong> – id of group.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return role_group:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">role group detail</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.get_detail">
+<code class="sig-name descname"><span class="pre">get_detail</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roleid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.get_detail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.get_detail" title="Permalink to this definition">¶</a></dt>
+<dd><p>get role detail</p>
+<p>:param roleid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return role:</th><td class="field-body">role</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.get_users">
+<code class="sig-name descname"><span class="pre">get_users</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roleid</span></span></em>, <em><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.get_users"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.get_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>get users by role.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>roleid</strong> – role id.</li>
+<li><strong>size</strong> – page size</li>
+<li><strong>offset</strong> – offset</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>:return result:user list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.set_role_scope">
+<code class="sig-name descname"><span class="pre">set_role_scope</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">userid</span></span></em>, <em><span class="n"><span class="pre">roleid</span></span></em>, <em><span class="n"><span class="pre">dept_ids</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.set_role_scope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.set_role_scope" title="Permalink to this definition">¶</a></dt>
+<dd><p>setting scope of role users.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>userid</strong> – user id</li>
+<li><strong>roleid</strong> – role id</li>
+<li><strong>dept_ids</strong> – department ids, using , seperate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.contact.Role.update">
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">roleid</span></span></em>, <em><span class="n"><span class="pre">rolename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/contact.html#Role.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.contact.Role.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>update role</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>roleid</strong> – role id</li>
+<li><strong>rolename</strong> – rolename</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return result:</th><td class="field-body"><p class="first last">True</p>
 </td>
 </tr>
 </tbody>

@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">快速开始</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../dept.html">部门管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dept.html">通讯录</a></li>
 </ul>
 
             
@@ -247,7 +247,7 @@
 
 <span class="sd">        :param dept_id: department id which is going to be deleted.</span>
 <span class="sd">        </span>
-<span class="sd">        :return True</span>
+<span class="sd">        :return result: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/v2/department/delete&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dept_id&#39;</span><span class="p">:</span> <span class="n">dept_id</span><span class="p">}</span>
@@ -316,6 +316,8 @@
 
 <span class="sd">        :param name: role name</span>
 <span class="sd">        :param groupid: group id</span>
+
+<span class="sd">        :return role_id: id of new created role.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/role/add_role&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleName&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;groupId&#39;</span><span class="p">:</span> <span class="n">groupid</span><span class="p">}</span>
@@ -354,7 +356,8 @@
 
 <span class="sd">        :param roles: roles</span>
 <span class="sd">        :param users: users</span>
-<span class="sd">        :return True</span>
+
+<span class="sd">        :return result: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;f</span><span class="si">{URL}</span><span class="s2">/role/addrolesforemps&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleIds&#39;</span><span class="p">:</span> <span class="n">roles</span><span class="p">,</span> <span class="s1">&#39;userIds&#39;</span><span class="p">:</span> <span class="n">users</span><span class="p">}</span>
@@ -366,7 +369,8 @@
 <span class="sd">        delete role</span>
 
 <span class="sd">        :param role_id: id of role which is going to be deleted.</span>
-<span class="sd">        :return True</span>
+
+<span class="sd">        :return result: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/deleterole&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;role_id&#39;</span><span class="p">:</span> <span class="n">role_id</span><span class="p">}</span>
@@ -379,6 +383,8 @@
 
 <span class="sd">        :param roleIds: roles</span>
 <span class="sd">        :param userids: users</span>
+
+<span class="sd">        :return result: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/removerolesforemps&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;roleIds&#39;</span><span class="p">:</span> <span class="n">roleids</span><span class="p">,</span> <span class="s1">&#39;userIds&#39;</span><span class="p">:</span> <span class="n">userids</span><span class="p">}</span>
@@ -390,6 +396,7 @@
 <span class="sd">        get role groups list.</span>
 
 <span class="sd">        :param group_id: id of group.</span>
+<span class="sd">        </span>
 <span class="sd">        :return role_group: role group detail</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -417,7 +424,8 @@
 <span class="sd">        get role detail</span>
 
 <span class="sd">        :param roleid</span>
-<span class="sd">        :return role</span>
+
+<span class="sd">        :return role: role</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/getrole&quot;</span>
@@ -430,7 +438,10 @@
 <span class="sd">        get users by role.</span>
 
 <span class="sd">        :param roleid: role id.</span>
-<span class="sd">        :return result</span>
+<span class="sd">        :param size: page size</span>
+<span class="sd">        :param offset: offset</span>
+
+<span class="sd">        :return result:user list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/simplelist&quot;</span>
@@ -445,7 +456,8 @@
 <span class="sd">        :param userid: user id</span>
 <span class="sd">        :param roleid: role id</span>
 <span class="sd">        :param dept_ids: department ids, using , seperate </span>
-<span class="sd">        :return True</span>
+
+<span class="sd">        :return result: True</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/topapi/role/scope/update&quot;</span>
