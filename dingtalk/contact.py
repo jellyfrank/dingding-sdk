@@ -408,7 +408,7 @@ test_create_user
         res = self._post(url, data)
         return res['result']['userid_list']
 
-    def ge_userinfo_by_department(self, dept_id, cursor=0, size=10, **kwargs):
+    def get_userinfo_by_department(self, dept_id, cursor=0, size=10, **kwargs):
         """
         get userinfos by department.
 
@@ -421,8 +421,110 @@ test_create_user
         :return object: user 'and name list object
         """
 
-        url = f"{URL}/topapi/v2/user/list/"
+        url = f"{URL}/topapi/v2/user/list"
         data = {'dept_id': dept_id, 'cursor': cursor, 'size': size}
         data.update(kwargs)
+        res = self._post(url, data)
+        return res['result']
+
+    def get_users_count(self, only_active=False):
+        """
+        get users count.
+
+        :param only_active: whether the unactive user into consideration.
+        :return count of users.
+        """
+        url = f"{URL}/topapi/user/count"
+        data = {'only_active': only_active}
+        res = self._post(url, data)
+        return res['result']['count']
+
+    def get_inactive_users(self, query_date, is_active=False, offset=0, size=100, **kwargs):
+        """
+        get users who was  unactive.
+
+        :param query_date: query date, format: yyyyMMdd
+        :param is_active: whether user is active
+        :param offset: offset
+        :param size: page size.
+        :param dept_ids: department ids. get whole enterprise if dept_ids is None
+        :return result
+        """
+
+        url = f"{URL}/topapi/inactive/user/v2/get"
+        data = {'query_date': query_date, 'is_active': is_active,
+                'offset': offset, 'size': size}
+        data.update(kwargs)
+        res = self._post(url, data)
+        return res['result']
+
+    def get_managers(self):
+        """
+        get user managers.
+
+        :return list of result [userid,sys_level]
+        """
+        url = f"{URL}/topapi/user/listadmin"
+        res = self._post(url, None)
+        return res['result']
+
+    def get_manager_contact_scope(self, user_id):
+        """
+        get scope of manager's contacts
+
+        :param: user_id: manager user id.
+        :return dept_is: departments which he can manage.
+        """
+
+        url = f"{URL}/topapi/user/get_admin_scope"
+        data = {'user_id': user_id}
+        res = self._post(url, data)
+        return res['result']['dept_ids']
+
+    def get_manager_app_scope(self):
+        """
+        get scope of manager's apps
+
+        """
+        # [TODO]
+        pass
+
+    def get_userid_by_phone(self, mobile):
+        """
+        get userid by phone number.
+
+        :param mobile: phone number.
+        :return userid
+        """
+
+        url = f"{URL}/topapi/v2/user/getbymobile"
+        data = {'mobile': mobile}
+        res = self._post(url)
+        return res['result']['userid']
+
+    def get_userid_by_unionid(self, unionid):
+        """
+        get userid by union id.
+
+        :param unionid: unionid
+        :return dict: {contact_type,userid}
+        """
+
+        url = f"{URL}/topapi/user/getbyunionid"
+        data = {'unionid': unionid}
+        res = self._post(url, data)
+        return res['result']
+
+    def get_unlogin_users(self, query_date, offset=0, size=100):
+        """
+        get user who havent login during last month.
+
+        :param query_date: query date, format yyyyMMdd
+        :param offset: offset
+        :param size: page size.
+        """
+
+        url = f"{URL}/topapi/inactive/user/get"
+        data = {'query_date': query_date, 'offset': offset, 'size': size}
         res = self._post(url, data)
         return res['result']

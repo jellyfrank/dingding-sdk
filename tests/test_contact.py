@@ -18,7 +18,8 @@ class TestContact(TestCase):
     def setUpClass(cls):
         cls.appkey = "dingtjjs1pr7nlgmtoxc"
         cls.appsecret = "8a6Ltc8_w-BNpqVOXg3dUH_1PHxxgmWnuf6Gt1ZcQqaMR3fYDDD6rs3Jnmzxr9uy"
-        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret)
+        cls.agentid = 1218698174
+        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret, cls.agentid)
 
     def test_create_department(self):
         if not TestContact.department_id:
@@ -122,8 +123,12 @@ class TestContact(TestCase):
         self.assertIsInstance(res, list)
 
     def test_get_userinfo_by_dept(self):
-        res = self.dingtalk.user.ge_userinfo_by_department(1)
+        res = self.dingtalk.user.get_userinfo_by_department(1)
         self.assertIsInstance(res, dict)
+
+    def test_get_managers(self):
+        res = self.dingtalk.user.get_managers()
+        self.assertIsInstance(res, list)
 
 
 if __name__ == "__main__":
@@ -143,6 +148,7 @@ if __name__ == "__main__":
     suit.addTest(TestContact("test_get_users_by_dept"))
     suit.addTest(TestContact("test_get_usersids_by_dept"))
     suit.addTest(TestContact("test_get_userinfo_by_dept"))
+    suit.addTest(TestContact("test_get_managers"))
 
     # suit.addTest(TestContact("test_delete_user"))
     suit.addTest(TestContact("test_delete_role"))
