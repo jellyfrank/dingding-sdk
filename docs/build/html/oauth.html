@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>钉钉Python SDK 文档 &mdash; dingding-sdk 0.0.1 documentation</title>
+  <title>Oauth &mdash; dingding-sdk 0.0.1 documentation</title>
   
 
   
@@ -41,7 +41,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="安装与升级" href="install.html" /> 
+    <link rel="next" title="通讯录" href="dept.html" />
+    <link rel="prev" title="快速开始" href="quickstart.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -55,7 +56,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> dingding-sdk
+            <a href="index.html" class="icon icon-home"> dingding-sdk
           
 
           
@@ -90,8 +91,8 @@
 <li class="toctree-l1"><a class="reference internal" href="install.html">安装与升级</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速开始</a></li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="oauth.html">Oauth</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Oauth</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dept.html">通讯录</a></li>
@@ -110,7 +111,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">dingding-sdk</a>
+          <a href="index.html">dingding-sdk</a>
         
       </nav>
 
@@ -141,15 +142,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>钉钉Python SDK 文档</li>
+      <li>Oauth</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/oauth.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -162,47 +163,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="python-sdk">
-<h1>钉钉Python SDK 文档<a class="headerlink" href="#python-sdk" title="Permalink to this headline">¶</a></h1>
-<p>dingding-sdk 是一个第三方的Python SDK，目前正在开发中…</p>
-<div class="section" id="id1">
-<h2>快速入门<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">安装与升级</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速开始</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#sdk">初始化钉钉SDK</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="oauth">
-<h2>Oauth<a class="headerlink" href="#oauth" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="oauth.html">Oauth</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>通讯录接口<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="dept.html">通讯录</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dept.html#module-dingtalk.contact">部门管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dept.html#module-0">用户管理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dept.html#module-1">角色管理</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
-</div>
+  <div class="section" id="module-dingtalk.oauth">
+<span id="oauth"></span><h1>Oauth<a class="headerlink" href="#module-dingtalk.oauth" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="dingtalk.oauth.Oauth">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">dingtalk.oauth.</span></code><code class="sig-name descname"><span class="pre">Oauth</span></code><a class="reference internal" href="_modules/dingtalk/oauth.html#Oauth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.oauth.Oauth" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.oauth.Oauth.get_app_manager">
+<code class="sig-name descname"><span class="pre">get_app_manager</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/oauth.html#Oauth.get_app_manager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.oauth.Oauth.get_app_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>get app manager info.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>code</strong> – authorized code.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return userinfo and corpinfo:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">{‘user_info’:{},’corp_info’:{}}</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="dingtalk.oauth.Oauth.get_userinfo">
+<code class="sig-name descname"><span class="pre">get_userinfo</span></code><span class="sig-paren">(</span><em><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dingtalk/oauth.html#Oauth.get_userinfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#dingtalk.oauth.Oauth.get_userinfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>get user info via qrcode.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>code</strong> – authorized code.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Return userinofo:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">object.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -211,7 +212,8 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="install.html" class="btn btn-neutral float-right" title="安装与升级" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dept.html" class="btn btn-neutral float-right" title="通讯录" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="快速开始" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

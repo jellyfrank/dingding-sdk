@@ -17,6 +17,13 @@ dingding-sdk 是一个第三方的Python SDK，目前正在开发中...
    install
    quickstart
 
+Oauth
+---------------
+.. toctree::
+   :maxdepth: 2
+
+   oauth
+
 通讯录接口
 ---------------
 .. toctree::

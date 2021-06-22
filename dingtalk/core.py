@@ -39,6 +39,21 @@ class Core(object):
             raise Exception()
         return res['access_token']
 
+    def _get_sso_access_token(self):
+        """
+        getting sso access token
+
+        :return access_token:  sso access token
+        """
+
+        url = f"{URL}/sso/gettoken"
+        res = requests.get(
+            url, {'corpid': self._corpid, 'corpsecret': self._appsecret})
+        if not res:
+            raise DingTlakException(res)
+        return res['access_token']
+        
+
     def _get_corp_access_token(self):
         """
         getting corp access token which auhtorized by app

@@ -90,6 +90,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">快速开始</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../oauth.html">Oauth</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../dept.html">通讯录</a></li>
 </ul>
 
@@ -197,6 +200,21 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_get_sso_access_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        getting sso access token</span>
+
+<span class="sd">        :return access_token:  sso access token</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{URL}</span><span class="s2">/sso/gettoken&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;corpid&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_corpid</span><span class="p">,</span> <span class="s1">&#39;corpsecret&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_appsecret</span><span class="p">})</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">DingTlakException</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span>
+        
 
     <span class="k">def</span> <span class="nf">_get_corp_access_token</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
