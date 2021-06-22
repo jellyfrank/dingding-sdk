@@ -2,8 +2,7 @@
 # @Time    : 2021-06-18
 # @Author  : Kevin Kong (kfx2007@163.com)
 
-from .core import Core, URL
-
+from dingtalk.core import Core
 
 class Department(Core):
 
