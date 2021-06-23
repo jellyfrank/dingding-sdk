@@ -2,7 +2,7 @@
 # @Time    : 2021-06-18
 # @Author  : Kevin Kong (kfx2007@163.com)
 
-from dingtalk.core import Core
+from dingtalk.core import Core, URL
 
 class Department(Core):
 
@@ -385,12 +385,12 @@ class User(Core):
 
     def get(self, userid, lang=None):
         """
-        get user info.
+        get user detail info.
 
         :param userid: user id
         :param lang: language of contact.
 
-        :return object: user infos.
+        :return object: user infos.(dict)
         """
         url = f"{URL}/topapi/v2/user/get"
         data = {'userid': userid, 'language': lang}
@@ -407,11 +407,13 @@ test_create_user
         :param order_field: order rule of department. 
         :param contain_access_limit: true/false whether contains limited users.
         :param language: language of contacts
-        :return object: user and name list object
+
+        :return object: user and name list object; {'has_more':true,'next_cursor':10,'list':[{'name':xx,'userid':xx}]}
         """
 
         url = f"{URL}/topapi/user/listsimple"
         data = {'dept_id': dept_id, 'cursor': cursor, 'size': size}
+        data.update(kwargs)
         res = self._post(url, data)
         return res['result']
 
@@ -526,7 +528,7 @@ test_create_user
         get userid by union id.
 
         :param unionid: unionid
-        :return dict: {contact_type,userid}
+        :return dict: {contact_type,userid} contact_type: 0 internal 1 external employee.
         """
 
         url = f"{URL}/topapi/user/getbyunionid"

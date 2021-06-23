@@ -19,7 +19,7 @@ class TestContact(TestCase):
         cls.appkey = "dingtjjs1pr7nlgmtoxc"
         cls.appsecret = "8a6Ltc8_w-BNpqVOXg3dUH_1PHxxgmWnuf6Gt1ZcQqaMR3fYDDD6rs3Jnmzxr9uy"
         cls.agentid = 1218698174
-        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret, cls.agentid)
+        cls.dingtalk = DingTalk(cls.appkey, cls.appsecret, cls.agentid)
 
     def test_create_department(self):
         if not TestContact.department_id:
@@ -134,24 +134,24 @@ class TestContact(TestCase):
 if __name__ == "__main__":
     suit = TestSuite()
     suit.addTest(TestContact("test_get_departments"))
-    suit.addTest(TestContact("test_create_department"))
-    suit.addTest(TestContact("test_update_department"))
-    suit.addTest(TestContact("test_get_department_children"))
-    suit.addTest(TestContact("test_get_parents"))
-    suit.addTest(TestContact("test_create_role_group"))
-    suit.addTest(TestContact("test_create_role"))
-    suit.addTest(TestContact("test_update_role"))
-    suit.addTest(TestContact("test_get_role_list"))
-    suit.addTest(TestContact("test_get_role_detail"))
-    # suit.addTest(TestContact("test_create_user"))
-    # suit.addTest(TestContact("test_get_user_info"))
-    suit.addTest(TestContact("test_get_users_by_dept"))
-    suit.addTest(TestContact("test_get_usersids_by_dept"))
-    suit.addTest(TestContact("test_get_userinfo_by_dept"))
-    suit.addTest(TestContact("test_get_managers"))
+    # suit.addTest(TestContact("test_create_department"))
+    # suit.addTest(TestContact("test_update_department"))
+    # suit.addTest(TestContact("test_get_department_children"))
+    # suit.addTest(TestContact("test_get_parents"))
+    # suit.addTest(TestContact("test_create_role_group"))
+    # suit.addTest(TestContact("test_create_role"))
+    # suit.addTest(TestContact("test_update_role"))
+    # suit.addTest(TestContact("test_get_role_list"))
+    # suit.addTest(TestContact("test_get_role_detail"))
+    # # suit.addTest(TestContact("test_create_user"))
+    # # suit.addTest(TestContact("test_get_user_info"))
+    # suit.addTest(TestContact("test_get_users_by_dept"))
+    # suit.addTest(TestContact("test_get_usersids_by_dept"))
+    # suit.addTest(TestContact("test_get_userinfo_by_dept"))
+    # suit.addTest(TestContact("test_get_managers"))
 
-    # suit.addTest(TestContact("test_delete_user"))
-    suit.addTest(TestContact("test_delete_role"))
-    suit.addTest(TestContact("test_delete_department"))
+    # # suit.addTest(TestContact("test_delete_user"))
+    # suit.addTest(TestContact("test_delete_role"))
+    # suit.addTest(TestContact("test_delete_department"))
 
     unittest.TextTestRunner(verbosity=3).run(suit)

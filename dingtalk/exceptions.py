@@ -3,7 +3,7 @@
 # @Author  : Kevin Kong (kfx2007@163.com)
 
 
-class DingTlakException(Exception):
+class DingTalkException(Exception):
 
     def __init__(self, errcode=None, sub_code=None, sub_msg=None, errmsg=None, request_id=None):
         self.errcode = errcode

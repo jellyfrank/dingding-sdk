@@ -14,7 +14,7 @@ class TestMessage(TestCase):
         cls.appkey = "dingtjjs1pr7nlgmtoxc"
         cls.appsecret = "8a6Ltc8_w-BNpqVOXg3dUH_1PHxxgmWnuf6Gt1ZcQqaMR3fYDDD6rs3Jnmzxr9uy"
         cls.agentid = 1218698174
-        cls.dingtalk = DingTalk("", cls.appkey, cls.appsecret, cls.agentid)
+        cls.dingtalk = DingTalk(cls.appkey, cls.appsecret, cls.agentid)
 
     def test_send_notication(self):
         res = self.dingtalk.message.send_notification(
