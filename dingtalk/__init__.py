@@ -8,4 +8,4 @@
 # from . import oauth
 
 __author__ = "Kevin Kong"
-__version__ = "0.0.4"
+__version__ = "0.0.5"

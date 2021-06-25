@@ -4,22 +4,35 @@
 
 from .core import Core, URL
 
+MESSAGE_TYPES = (
+    'text',
+    'image',
+    'voice',
+    'file',
+    'link',
+    'oa',
+    'markdown',
+    'action_card'
+)
+
 
 class WorkMessage(Core):
 
-    def send_notification(self, msg, useridlist=None,  dept_id_list=None, to_all_user=False):
+    def send_notification(self, msg, type='text', useridlist=None,  dept_id_list=None, to_all_user=False):
         """
         send work notification.
 
+        :param msg: json object.
+        :param type: message type.
         :param agentid: agentid
         :param useridlist: user id list
         :param dept_id_list: id of departments
         :param to_all_user: whether send to all users.
-        :param msg: json object.
 
         :return task_id: async task id.
         """
         url = f"{URL}/topapi/message/corpconversation/asyncsend_v2"
+        msg['msgtype'] = type
         data = {'agent_id': self._agentid,
                 'msg': msg, 'dept_id_list': dept_id_list, 'useridlist': useridlist}
         res = self._post(url, data)
