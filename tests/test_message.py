@@ -42,16 +42,16 @@ class TestMessage(TestCase):
         self.assertTrue(res)
 
     def test_recall(self):
-        res = self.dingtalk.workmessage.recall(self.task_id)
+        res = self.dingtalk.workmessage.recall(391450657858)
         self.assertTrue(res)
 
 
 if __name__ == "__main__":
     suit = TestSuite()
-    suit.addTest(TestMessage("test_send_notication"))
-    suit.addTest(TestMessage("test_get_notificatioin_progress"))
-    suit.addTest(TestMessage("test_get_notificatioin_result"))
-    suit.addTest(TestMessage("test_update_status_bar"))
-    # suit.addTest(TestMessage("test_recall"))
+    # suit.addTest(TestMessage("test_send_notication"))
+    # suit.addTest(TestMessage("test_get_notificatioin_progress"))
+    # suit.addTest(TestMessage("test_get_notificatioin_result"))
+    # suit.addTest(TestMessage("test_update_status_bar"))
+    suit.addTest(TestMessage("test_recall"))
 
     unittest.TextTestRunner(verbosity=3).run(suit)

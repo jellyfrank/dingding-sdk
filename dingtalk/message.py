@@ -18,15 +18,15 @@ MESSAGE_TYPES = (
 
 class WorkMessage(Core):
 
-    def send_notification(self, msg, type='text', useridlist=None,  dept_id_list=None, to_all_user=False):
+    def send_notification(self, msg, type='text', userid_list=None,  dept_id_list=None, to_all_user=False):
         """
         send work notification.
 
         :param msg: json object.
         :param type: message type.
         :param agentid: agentid
-        :param useridlist: user id list
-        :param dept_id_list: id of departments
+        :param userid_list: user id list
+        :param dept_id_list: id of departments. "1,2,3"
         :param to_all_user: whether send to all users.
 
         :return task_id: async task id.
@@ -34,7 +34,7 @@ class WorkMessage(Core):
         url = f"{URL}/topapi/message/corpconversation/asyncsend_v2"
         msg['msgtype'] = type
         data = {'agent_id': self._agentid,
-                'msg': msg, 'dept_id_list': dept_id_list, 'useridlist': useridlist}
+                'msg': msg, 'dept_id_list': dept_id_list, 'userid_list': userid_list}
         res = self._post(url, data)
         return res['task_id']
 
