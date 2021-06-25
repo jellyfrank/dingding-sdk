@@ -20,3 +20,7 @@
 ## 0.0.4
 
 - Fix bugs.
+
+## 0.0.5
+
+- Work message Api
