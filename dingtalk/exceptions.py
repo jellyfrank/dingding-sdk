@@ -13,4 +13,4 @@ class DingTalkException(Exception):
         self.request_id = request_id
 
     def __str__(self):
-        return f"errcode: {self.errcode}, errmsg:{self.errmsg}, request_id:{self.request_id} submsg:{self.sub_msg or ''}"
+        return f"errcode: {self.errcode},  errmsg: {self.errmsg}, request_id: {self.request_id} {f'submsg:{self.sub_msg}' if self.sub_msg else '' }" 
