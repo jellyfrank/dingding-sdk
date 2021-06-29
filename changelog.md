@@ -24,3 +24,4 @@
 ## 0.0.5
 
 - Work message Api
+- HR Api
