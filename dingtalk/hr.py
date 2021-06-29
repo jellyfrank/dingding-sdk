@@ -18,7 +18,11 @@ class HR(Core):
         :return result: {'next_cursor':xx, 'data_list': list of user id.} no next_cursor means ending of result.
         """
 
-        url = "{URL}/topapi/smartwork/hrm/employee/queryonjob"
+        url = f"{URL}/topapi/smartwork/hrm/employee/queryonjob"
+
+        if not status:
+            status = "2,3,5,-1"
+
         data = {
             'status_list': status,
             'offset': offset,
@@ -36,10 +40,43 @@ class HR(Core):
 
         :return result: {'next_cursor':xx, 'data_list': list of user id.} no next_cursor means ending of result.
         """
-        url = "{URL}/smartwork/hrm/employee/querypreentry"
+        url = f"{URL}/topapi/smartwork/hrm/employee/querypreentry"
         data = {
             'offset': offset,
             'size': size
+        }
+        res = self._post(url, data)
+        return res['result']
+
+    def get_dimission_userids(self, offset=0, size=50):
+        """
+        get dimission userids.
+
+        :param offset: offset
+        :param size: page size.
+
+        :return result: {'next_cursor': offset of next page. 'data_list': userids of dimission users}
+        """
+        url = f"{URL}/topapi/smartwork/hrm/employee/querydimission"
+        data = {
+            'offset': offset,
+            "size": size
+        }
+        res = self._post(url, data)
+        return res['result']
+
+    def get_dimission_info(self, userids):
+        """
+        get dimssion employees list.
+
+        :param userids: dimisson user ids. using , seperate several users.
+
+        :return result:listobject result infos.
+        """
+
+        url = f"{URL}/topapi/smartwork/hrm/employee/listdimission"
+        data = {
+            "userid_list": userids
         }
         res = self._post(url, data)
         return res['result']
