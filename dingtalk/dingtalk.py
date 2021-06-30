@@ -6,6 +6,7 @@ from .core import Core
 from .contact import Department, Role, User
 from .message import WorkMessage
 from .hr import HR
+from .workflow import WorkFlow
 
 
 class DingTalk(object):
@@ -32,6 +33,7 @@ class DingTalk(object):
     user = User()
     workmessage = WorkMessage()
     hr = HR()
+    workflow = WorkFlow()
 
     # def _get_enterprise_access_token(self):
     #     """

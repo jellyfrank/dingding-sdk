@@ -12,6 +12,12 @@ class Component(object):
         self.component_name = name
         self.props = props
 
+    def to_json(self):
+        return {
+            "component_name": self.component_name,
+            "props": self.props.to_json()
+        }
+
 
 class FormComponentProp(object):
 
@@ -22,7 +28,11 @@ class FormComponentProp(object):
         self.required = required
 
     def to_json(self):
-        pass
+        return {
+            "id": self.id,
+            "label": self.label,
+            "required": self.required
+        }
 
 
 class WorkFlow(Core):
@@ -40,9 +50,14 @@ class WorkFlow(Core):
         """
         url = f"{URL}/topapi/process/save"
         data = {
-            "name": name,
-            "description": description,
-            "form_component_list": form_components.to_json()
+            "saveProcessRequest": {
+                "agentid": self._agentid,
+                "name": name,
+                'process_code': process_code,
+                "description": description,
+                "form_component_list": [comp.to_json() for comp in form_components]
+            }
+
         }
         res = self._post(url, data)
         return res['result']
