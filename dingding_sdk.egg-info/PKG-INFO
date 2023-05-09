@@ -1,17 +1,11 @@
 Metadata-Version: 2.1
 Name: dingding-sdk
-Version: 0.0.5
+Version: 0.0.6
 Summary: DingTalk Python SDK
 Home-page: https://github.com/jellyhappy/dingding-sdk
 Author: blackcat
 Author-email: kfx2007@163.com
 License: GNU
-Description: # DingTalk Python SDK
-        
-        author: Kevin Kong 
-        version: 0.0.1
-        
-        
 Keywords: dingding sdk
 Platform: UNKNOWN
 Classifier: License :: OSI Approved :: GNU Affero General Public License v3
@@ -24,3 +18,11 @@ Classifier: Intended Audience :: Science/Research
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: Information Technology
 Description-Content-Type: text/markdown
+
+# DingTalk Python SDK
+
+author: Kevin Kong 
+version: 0.0.1
+
+
+

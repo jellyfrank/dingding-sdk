@@ -6,12 +6,13 @@ import requests
 from hmac import HMAC
 from hashlib import sha256
 from base64 import b64encode
-from .exceptions import DingTalkException
+from .exceptions import DingTalkException, DingTalkV2Exception
 import time
 import logging
 from urllib.parse import quote
 
 URL = "https://oapi.dingtalk.com"
+NEW_URL = "https://api.dingtalk.com"
 
 _logger = logging.getLogger(__name__)
 
@@ -77,12 +78,46 @@ class Core(object):
         signstring = f"{timestamp}\n{self._suitticket}"
         return qoute(b64encode(HMAC(appsecret.encode('utf-8'), signstring, sha256).digest()).decode('utf-8'))
 
-    def _post(self, url, data):
+    def _post(self, url, json=None, data=None, files=None):
         # [FIXME] other two type requests
         access_token = self._get_enterprise_access_token()
         res = requests.post(
-            f"{url}?access_token={access_token}", json=data).json()
+            f"{url}?access_token={access_token}", data=data, json=json, files=files).json()
+        print(res)
         if res['errcode'] != 0:
             _logger.debug(f"[DingTalk Request]:{data}")
             raise DingTalkException(**res)
+        return res
+
+    def _v2_get_access_token(self):
+        """
+            get new api access token.
+        """
+        url = f"{NEW_URL}/v1.0/oauth2/accessToken"
+
+        data = {
+            "appKey": self._appkey,
+            "appSecret": self._appsecret
+        }
+
+        res = requests.post(url, json=data).json()
+        return res['accessToken']
+
+    def _v2_post(self, url, json=None, data=None, files=None):
+        """
+            NEW Post
+        """
+        access_token = self._v2_get_access_token()
+        headers = {
+            "x-acs-dingtalk-access-token": access_token,
+            "Content-Type":"application/json"
+        }
+        res = requests.post(
+            url, data=data, json=json, files=files, headers=headers).json()
+        print(url)
+        print(headers)
+        print(json)
+        print(res)
+        if res.get("code"):
+            raise DingTalkV2Exception(**res)
         return res

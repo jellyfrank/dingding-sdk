@@ -13,4 +13,27 @@ class DingTalkException(Exception):
         self.request_id = request_id
 
     def __str__(self):
-        return f"errcode: {self.errcode},  errmsg: {self.errmsg}, request_id: {self.request_id} {f'submsg:{self.sub_msg}' if self.sub_msg else '' }" 
+        return f"""
+errcode: {self.errcode} 
+errmsg: {self.errmsg}
+request_id: {self.request_id}
+sub_code: {self.sub_code if self.sub_code else ''}
+sub_msg: {self.sub_msg if self.sub_msg else ''}
+"""
+
+
+class DingTalkV2Exception(Exception):
+
+    def __init__(self, code=None, requestid=None, message=None, accessdenieddetail=None):
+        self.code = code
+        self.requestid = requestid
+        self.message = message
+        self.accessdenieddetail = accessdenieddetail
+
+    def __str__(self):
+        return f"""
+code: {self.code}
+requestId: {self.requestid}
+message: {self.message}
+detail: {self.accessdenieddetail}
+"""

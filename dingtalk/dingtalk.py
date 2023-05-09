@@ -7,6 +7,10 @@ from .contact import Department, Role, User
 from .message import WorkMessage
 from .hr import HR
 from .workflow import WorkFlow
+from .document import Document
+from .session import Session
+from .space import Space
+from .robot import Robot
 
 
 class DingTalk(object):
@@ -34,8 +38,17 @@ class DingTalk(object):
     workmessage = WorkMessage()
     hr = HR()
     workflow = WorkFlow()
+    doc = Document()
+    session = Session()
+    space = Space()
+    robot = Robot()
 
-    # def _get_enterprise_access_token(self):
-    #     """
-    #     getting enterprise access token.
-    #     url =
+    def set_user(self, user_id):
+        """
+            set user.
+        """
+        user_info = self.user.get(user_id)
+        union_id = user_info['unionid']
+        self.space.union_id = union_id
+        self.doc.union_id = union_id
+        self.session.union_id = union_id
